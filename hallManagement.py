@@ -1,0 +1,1 @@
+print("This is my hall management system")
