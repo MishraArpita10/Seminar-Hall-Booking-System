@@ -97,9 +97,17 @@ Each module has its own submenu, allowing users to perform the required operatio
 
 ### Screenshot: Main Menu
 
-<!-- Add screenshot of the main menu here -->
+## Main Menu and Hall Management
 
-![Main Menu](screenshots/main-menu.png)
+![Main Menu](screenshots/hall-management-main-menu.png)
+
+## Navigation to Search
+
+![Navigation](screenshots/hall-management-navigation.png)
+
+## Search Results
+
+![Search Results](screenshots/search-results.png)
 
 ## 6. Hall Management
 
@@ -111,11 +119,7 @@ Each hall contains:
 - Capacity
 - Available Equipment
 
-### Screenshot: Hall Management
 
-<!-- Add screenshot here -->
-
-![Hall Management](screenshots/hall-management.png)
 
 ## 7. Booking Management
 
@@ -143,11 +147,7 @@ The system performs the following validations:
 - Start time must be earlier than end time.
 - A hall cannot have overlapping bookings on the same date.
 
-### Screenshot: Booking Management
 
-<!-- Add screenshot here -->
-
-![Booking Management](screenshots/booking-management.png)
 
 ## 8. Search Functionality
 
@@ -155,11 +155,6 @@ The Search module provides separate search options for halls and bookings.
 
 It supports searching through individual fields as well as multiple criteria.
 
-### Screenshot: Search Menu
-
-<!-- Add screenshot here -->
-
-![Search Menu](screenshots/search-menu.png)
 
 ## 9. Test Cases
 
