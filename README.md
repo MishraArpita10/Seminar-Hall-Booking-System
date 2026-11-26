@@ -1,87 +1,59 @@
 # Seminar Hall Booking System
 
-## Project Overview
-The Seminar Hall Booking System is a Python-based application designed to manage seminar hall bookings efficiently. It allows users to view available halls, search for halls, make bookings, view existing bookings, and cancel bookings.
+A Python-based, menu-driven Seminar Hall Booking System that allows users to manage seminar halls, create and manage bookings, check hall availability, and search for halls and bookings.
 
-## Features
+## 1. Project Overview
 
-### 1. Hall Management
+The Seminar Hall Booking System is developed using Python. It provides a simple, interactive, console-based interface through which users can manage halls and bookings efficiently.
+
+The system is divided into independent modules to make the code organised, reusable, and easier to maintain.
+
+## 2. Features
+
+### Hall Management
 - View all available seminar halls.
-- Add new halls.
+- Add new seminar halls.
 - Delete existing halls.
-- View hall details such as capacity and equipment.
+- Assign hall IDs automatically.
+- Validate hall names to prevent duplicate hall entries.
+- Store hall capacity and available equipment.
 
-### 2. Booking Management
-- Book a seminar hall.
-- Check hall availability for a selected date and time.
-- Prevent overlapping bookings.
-- Validate attendee capacity.
-- View all bookings.
-- Cancel bookings using Booking ID.
+### Booking Management
+- Book a seminar hall for an event.
+- View all existing bookings.
+- Cancel an existing booking.
+- Validate organizer and event details.
+- Validate attendee count against hall capacity.
+- Validate booking date and time.
+- Prevent bookings for past dates and invalid time slots.
+- Generate unique booking IDs.
 
-### 3. Search Management
-- Search halls by Hall ID.
-- Search halls by name.
+### Hall Availability and Duplicate Booking Prevention
+- Check whether a hall is available for a selected date and time.
+- Prevent two bookings from overlapping in the same hall.
+- Allow bookings in different halls at the same time.
+- Allow adjacent bookings when one booking ends exactly when another begins.
+
+### Search Module
+Users can search using the following criteria:
+
+**Hall Search**
+- Search hall by ID.
+- Search hall by name.
 - Search halls by minimum capacity.
 - Search halls by equipment.
-- Search halls using multiple criteria.
-- Search bookings by Booking ID.
-- Search bookings by organizer name.
-- Search bookings by Hall ID.
-- Search bookings by booking date.
+- Search using multiple criteria (capacity and equipment).
 
-## Technologies Used
-- Python
-- Git and GitHub
-- VS Code
+**Booking Search**
+- Search booking by ID.
+- Search bookings by organizer.
+- Search bookings by hall ID.
+- Search bookings by date.
 
-## Project Structure
+## 3. Technologies Used
 
-```text
-Seminar-Hall-Booking-System/
-│
-├── main.py
-├── hallManagement.py
-├── bookingManagement.py
-├── search.py
-└── README.md
-```
-
-## How to Run the Project
-
-1. Clone the repository:
-
-```bash
-git clone https://github.com/MishraArpita10/Seminar-Hall-Booking-System.git
-```
-
-2. Navigate to the project directory:
-
-```bash
-cd Seminar-Hall-Booking-System
-```
-
-3. Run the application:
-
-```bash
-python main.py
-```
-
-## Modules
-
-| File | Responsibility |
-|---|---|
-| `main.py` | Main menu and integration |
-| `hallManagement.py` | Hall-related operations |
-| `bookingManagement.py` | Booking and cancellation operations |
-| `search.py` | Hall and booking search operations |
-
-## Contributors
-
-Developed as a group academic project.
-
-## Future Enhancements
-- Database integration for permanent data storage.
-- User authentication.
-- Booking history and reports.
-- Improved user interface.
+- **Programming Language:** Python
+- **Date and Time Handling:** Python `datetime` module
+- **Testing:** Python test scripts
+- **Version Control:** Git and GitHub
+- **Development Environment:** Visual Studio
