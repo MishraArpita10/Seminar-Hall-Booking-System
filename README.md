@@ -95,19 +95,11 @@ The main menu connects the different modules:
 
 Each module has its own submenu, allowing users to perform the required operations and return to the main menu.
 
-### Screenshot: Main Menu
+### Screenshots:
 
-## Main Menu and Hall Management
-
-![Main Menu](screenshots/hall-management-main-menu.png)
-
-## Navigation to Search
-
-![Navigation](screenshots/hall-management-navigation.png)
-
-## Search Results
-
-![Search Results](screenshots/search-results.png)
+![Main Menu](hall-management-main-menu.png)
+![Navigation](hall-management-navigation.png)
+![Search Results](search-results.png)
 
 ## 6. Hall Management
 
