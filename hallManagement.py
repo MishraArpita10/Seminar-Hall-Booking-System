@@ -47,15 +47,27 @@ def view_halls():
     print("\n=====================================")
 
 
-# Add a new hall
+
+
+# Add a new hall with duplicate validation
 def add_hall(name, capacity, equipment):
+
     if not name.strip():
         print("Hall name cannot be empty.")
         return False
 
+    # Check whether hall already exists
+    for hall in halls:
+        if hall["name"].strip().lower() == name.strip().lower():
+            print("A hall with this name already exists!")
+            return False
+
     if capacity <= 0:
         print("Capacity must be greater than zero.")
         return False
+
+    # Remove empty equipment entries
+    equipment = [item.strip().title() for item in equipment if item.strip()]
 
     if not equipment:
         print("Please provide at least one equipment item.")
@@ -70,7 +82,7 @@ def add_hall(name, capacity, equipment):
         "hall_id": new_id,
         "name": name.strip(),
         "capacity": capacity,
-        "equipment": [item.strip().title() for item in equipment if item.strip()]
+        "equipment": equipment
     }
 
     halls.append(new_hall)
