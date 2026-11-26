@@ -191,11 +191,13 @@ The following scenarios can also be tested through the booking function:
 - Attempting an overlapping booking.
 - Cancelling a non-existing booking.
 
-### Screenshot: Test Execution
+## Booking Test Execution Results
 
-<!-- Add screenshot of terminal showing test results -->
+The booking availability function was tested against five scenarios.
 
-![Test Results](screenshots/test-results.png)
+![Booking Test Results](screenshots/booking-test-results.png)
+
+All five availability tests passed successfully.
 
 ## 10. How to Run the Project
 
