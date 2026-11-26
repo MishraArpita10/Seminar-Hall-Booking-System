@@ -95,11 +95,9 @@ The main menu connects the different modules:
 
 Each module has its own submenu, allowing users to perform the required operations and return to the main menu.
 
-### Screenshot: Main Menu
-
 ## Main Menu and Hall Management
 
-![Main Menu](screenshots/hall-management-main-menu.png)
+![Main Menu](screenshots/maiin_menu.png)
 
 ## Navigation to Search
 
@@ -107,7 +105,7 @@ Each module has its own submenu, allowing users to perform the required operatio
 
 ## Search Results
 
-![Search Results](screenshots/search-results.png)
+![Search Results](screenshots/search.png)
 
 ## 6. Hall Management
 
@@ -193,11 +191,13 @@ The following scenarios can also be tested through the booking function:
 - Attempting an overlapping booking.
 - Cancelling a non-existing booking.
 
-### Screenshot: Test Execution
+## Booking Test Execution Results
 
-<!-- Add screenshot of terminal showing test results -->
+The booking availability function was tested against five scenarios.
 
-![Test Results](screenshots/test-results.png)
+![Booking Test Results](screenshots/booking-test-results.png)
+
+All five availability tests passed successfully.
 
 ## 10. How to Run the Project
 
