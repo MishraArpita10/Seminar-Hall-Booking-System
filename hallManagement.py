@@ -1,7 +1,10 @@
 
 # hallManagement.py
 
-# List to store all seminar hall details
+# ----------------------------------
+# HALL DATABASE
+# ----------------------------------
+
 halls = [
     {
         "hall_id": 1,
@@ -19,7 +22,9 @@ halls = [
         "hall_id": 3,
         "name": "Conference Hall",
         "capacity": 200,
-        "equipment": ["Projector", "Microphone", "Speakers", "Whiteboard"]
+        "equipment": [
+            "Projector", "Microphone", "Speakers", "Whiteboard"
+        ]
     },
     {
         "hall_id": 4,
@@ -30,47 +35,61 @@ halls = [
 ]
 
 
-# Display all available halls
+# ----------------------------------
+# 1. VIEW ALL HALLS
+# ----------------------------------
+
 def view_halls():
+
     if not halls:
-        print("\nNo halls are available.")
+        print("\nNo halls registered.")
         return
 
-    print("\n========== AVAILABLE HALLS ==========")
+    print("\n========== ALL SEMINAR HALLS ==========")
 
     for hall in halls:
-        print(f"\nHall ID: {hall['hall_id']}")
-        print(f"Hall Name: {hall['name']}")
-        print(f"Capacity: {hall['capacity']} people")
+        print(f"\nID: {hall['hall_id']}")
+        print(f"Name: {hall['name']}")
+        print(f"Capacity: {hall['capacity']}")
         print(f"Equipment: {', '.join(hall['equipment'])}")
 
-    print("\n=====================================")
+    print("\n=======================================")
 
 
+# ----------------------------------
+# 2. ADD A NEW HALL
+# ----------------------------------
 
-
-# Add a new hall with duplicate validation
 def add_hall(name, capacity, equipment):
 
-    if not name.strip():
-        print("Hall name cannot be empty.")
+    name = name.strip()
+
+    if not name:
+        print("\nHall name cannot be empty.")
         return False
 
-    # Check whether hall already exists
-    for hall in halls:
-        if hall["name"].strip().lower() == name.strip().lower():
-            print("A hall with this name already exists!")
-            return False
-
-    if capacity <= 0:
-        print("Capacity must be greater than zero.")
+    if not isinstance(capacity, int) or capacity <= 0:
+        print("\nCapacity must be a positive integer.")
         return False
-
-    # Remove empty equipment entries
-    equipment = [item.strip().title() for item in equipment if item.strip()]
 
     if not equipment:
-        print("Please provide at least one equipment item.")
+        print("\nAt least one equipment item is required.")
+        return False
+
+    # Prevent duplicate hall names
+    for hall in halls:
+        if hall["name"].lower() == name.lower():
+            print("\nA hall with this name already exists.")
+            return False
+
+    clean_equipment = [
+        item.strip().title()
+        for item in equipment
+        if item.strip()
+    ]
+
+    if not clean_equipment:
+        print("\nPlease enter valid equipment names.")
         return False
 
     new_id = max(
@@ -80,19 +99,23 @@ def add_hall(name, capacity, equipment):
 
     new_hall = {
         "hall_id": new_id,
-        "name": name.strip(),
+        "name": name,
         "capacity": capacity,
-        "equipment": equipment
+        "equipment": clean_equipment
     }
 
     halls.append(new_hall)
 
-    print(f"\n{new_hall['name']} added successfully!")
+    print(f"\n{ name } added successfully!")
     return True
 
 
-# Find a hall using its ID
+# ----------------------------------
+# 3. SEARCH HALL BY ID
+# ----------------------------------
+
 def get_hall_by_id(hall_id):
+
     for hall in halls:
         if hall["hall_id"] == hall_id:
             return hall
@@ -100,8 +123,135 @@ def get_hall_by_id(hall_id):
     return None
 
 
-# Delete a hall using its ID
+# ----------------------------------
+# 4. SEARCH HALL BY NAME
+# ----------------------------------
+
+def search_hall_by_name(name):
+
+    results = []
+
+    for hall in halls:
+        if name.lower() in hall["name"].lower():
+            results.append(hall)
+
+    if results:
+        print("\nMatching halls:")
+
+        for hall in results:
+            print(
+                f"{hall['hall_id']} - {hall['name']} "
+                f"({hall['capacity']} people)"
+            )
+    else:
+        print("\nNo matching hall found.")
+
+    return results
+
+
+# ----------------------------------
+# 5. FILTER HALLS BY CAPACITY
+# ----------------------------------
+
+def filter_by_capacity(min_capacity):
+
+    results = []
+
+    for hall in halls:
+        if hall["capacity"] >= min_capacity:
+            results.append(hall)
+
+    return results
+
+
+# ----------------------------------
+# 6. FILTER HALLS BY EQUIPMENT
+# ----------------------------------
+
+def filter_by_equipment(required_equipment):
+
+    results = []
+
+    required_equipment = [
+        item.strip().lower()
+        for item in required_equipment
+    ]
+
+    for hall in halls:
+
+        available_equipment = [
+            item.lower()
+            for item in hall["equipment"]
+        ]
+
+        if all(
+            item in available_equipment
+            for item in required_equipment
+        ):
+            results.append(hall)
+
+    return results
+
+
+# ----------------------------------
+# 7. UPDATE HALL DETAILS
+# ----------------------------------
+
+def update_hall(hall_id, name=None, capacity=None, equipment=None):
+
+    hall = get_hall_by_id(hall_id)
+
+    if hall is None:
+        print("\nHall not found.")
+        return False
+
+    if name is not None:
+        name = name.strip()
+
+        if not name:
+            print("\nHall name cannot be empty.")
+            return False
+
+        for other_hall in halls:
+            if (
+                other_hall["hall_id"] != hall_id
+                and other_hall["name"].lower() == name.lower()
+            ):
+                print("\nAnother hall already has this name.")
+                return False
+
+        hall["name"] = name
+
+    if capacity is not None:
+        if not isinstance(capacity, int) or capacity <= 0:
+            print("\nInvalid capacity.")
+            return False
+
+        hall["capacity"] = capacity
+
+    if equipment is not None:
+        clean_equipment = [
+            item.strip().title()
+            for item in equipment
+            if item.strip()
+        ]
+
+        if not clean_equipment:
+            print("\nAt least one valid equipment item is required.")
+            return False
+
+        hall["equipment"] = clean_equipment
+
+    print("\nHall details updated successfully!")
+    return True
+
+
+# ----------------------------------
+# 8. DELETE A HALL
+# ----------------------------------
+
 def delete_hall(hall_id):
+
     hall = get_hall_by_id(hall_id)
 
     if hall is None:
@@ -109,5 +259,40 @@ def delete_hall(hall_id):
         return False
 
     halls.remove(hall)
+
     print(f"\n{hall['name']} deleted successfully!")
     return True
+
+
+# ----------------------------------
+# 9. SORT HALLS BY CAPACITY
+# ----------------------------------
+
+def sort_halls_by_capacity():
+
+    sorted_halls = sorted(
+        halls,
+        key=lambda hall: hall["capacity"]
+    )
+
+    print("\nHalls sorted by capacity:")
+
+    for hall in sorted_halls:
+        print(
+            f"{hall['name']} - {hall['capacity']} people"
+        )
+
+    return sorted_halls
+
+
+# ----------------------------------
+# 10. COUNT TOTAL HALLS
+# ----------------------------------
+
+def count_halls():
+
+    total = len(halls)
+
+    print(f"\nTotal registered halls: {total}")
+
+    return total
