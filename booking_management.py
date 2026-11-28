@@ -1,8 +1,13 @@
 
 from datetime import datetime
 from hallManagement import view_halls, get_hall_by_id
+<<<<<<< HEAD
+from maintenance import check_maintenance_conflict
+# List to store all bookings
+=======
 
 # List to store bookings
+>>>>>>> 0d838e7f8524c70400e986c198ce42cb0b882245
 bookings = []
 
 
@@ -129,8 +134,22 @@ def book_hall():
     if not check_availability(hall_id, booking_date, start_time, end_time):
         print("Hall is already booked during this time.")
         return
+    # Check availability against existing bookings
+    if not check_availability(hall_id, booking_date, start_time, end_time):
+        print(f"Sorry! {hall['name']} is already booked during this time.")
+        return
 
+<<<<<<< HEAD
+    # Check conflict against scheduled/in-progress maintenance
+    if check_maintenance_conflict(hall_id, booking_date, start_time, end_time):
+        print(f"Sorry! {hall['name']} is under maintenance during this time.")
+        return
+    
+    # Generate unique booking ID (safe even after deletions)
+    new_booking_id = max((b["booking_id"] for b in bookings), default=0) + 1
+=======
     booking_id = max((b["booking_id"] for b in bookings), default=0) + 1
+>>>>>>> 0d838e7f8524c70400e986c198ce42cb0b882245
 
     booking = {
         "booking_id": booking_id,

@@ -19,7 +19,13 @@ from booking_management import (
 )
 
 from search import search_menu
-
+from maintenance import (
+    schedule_maintenance,
+    view_maintenance_logs,
+    update_maintenance_status,
+    cancel_maintenance,
+    check_hall_readiness,
+)
 
 # ==========================================
 # HALL MANAGEMENT MENU
@@ -175,21 +181,58 @@ def booking_management_menu():
         else:
             print("Invalid choice! Please try again.")
 
+def maintenance_management_menu():
+    while True:
+        print("\n========== MAINTENANCE MANAGEMENT ==========")
+        print("1. Schedule / Log Hall Maintenance")
+        print("2. View Maintenance Schedule")
+        print("3. Update Maintenance Status")
+        print("4. Cancel / Remove Maintenance Entry")
+        print("5. Check Hall Operational Readiness")
+        print("6. Back to Main Menu")
+
+        choice = input("Enter your choice: ").strip()
+
+        if choice == "1":
+            schedule_maintenance()
+
+        elif choice == "2":
+            view_maintenance_logs()
+
+        elif choice == "3":
+            update_maintenance_status()
+
+        elif choice == "4":
+            cancel_maintenance()
+
+        elif choice == "5":
+            check_hall_readiness()
+
+        elif choice == "6":
+            break
+
+        else:
+            print("Invalid choice!")
 
 # ==========================================
 # MAIN MENU
 # ==========================================
 
 def main_menu():
-
     while True:
         print("\n========================================")
         print("       SEMINAR HALL BOOKING SYSTEM")
         print("========================================")
         print("1. Hall Management")
         print("2. Booking Management")
+<<<<<<< HEAD
+        print("3. Search")
+        print("4. Maintenance Management")
+        print("5. Exit")
+=======
         print("3. Search Halls")
         print("4. Exit")
+>>>>>>> 0d838e7f8524c70400e986c198ce42cb0b882245
 
         choice = input("\nEnter your choice: ").strip()
 
@@ -203,16 +246,26 @@ def main_menu():
             search_menu()
 
         elif choice == "4":
+            maintenance_management_menu()
+
+        elif choice == "5":
             print("\nThank you for using Seminar Hall Booking System!")
             break
 
         else:
             print("Invalid choice. Please try again.")
+<<<<<<< HEAD
+
+
+if __name__ == "__main__":
+    main_menu()
+            
+        
+=======
+>>>>>>> 0d838e7f8524c70400e986c198ce42cb0b882245
 
 
 # ==========================================
 # PROGRAM EXECUTION
 # ==========================================
 
-if __name__ == "__main__":
-    main_menu()
